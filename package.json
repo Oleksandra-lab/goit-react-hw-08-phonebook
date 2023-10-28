@@ -2,7 +2,7 @@
   "name": "react-homework-template",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Oleksandra-lab.github.io/goit-react-hw-07-phonebook/",
+  "homepage": "https://Oleksandra-lab.github.io/goit-react-hw-08-phonebook/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
