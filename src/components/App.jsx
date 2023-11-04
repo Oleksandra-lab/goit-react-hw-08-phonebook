@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 // import ContactForm from './ContactForm/ContactForm';
 // import ContactList from './ContactList/ContactList';
 // import Filter from './Filter/Filter';
-import { useDispatch, } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import {
 //   requestAddContact,
 //   requestContacts,
@@ -13,6 +13,8 @@ import { useDispatch, } from 'react-redux';
 import Navigation from './Navigation/Navigation';
 import Loader from './Loader/Loader';
 import { refreshThunk } from 'redux/authReducer';
+import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -21,9 +23,30 @@ const ContactsPage = lazy(() => import('pages/ContactsPage'));
 
 const appRoutes = [
   { path: '/', element: <HomePage /> },
-  { path: '/register', element: <RegisterPage /> },
-  { path: '/login', element: <LoginPage /> },
-  { path: '/contacts', element: <ContactsPage /> },
+  {
+    path: '/register',
+    element: (
+      <RestrictedRoute>
+        <RegisterPage />
+      </RestrictedRoute>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <RestrictedRoute>
+        <LoginPage />
+      </RestrictedRoute>
+    ),
+  },
+  {
+    path: '/contacts',
+    element: (
+      <PrivateRoute>
+        <ContactsPage />
+      </PrivateRoute>
+    ),
+  },
 ];
 
 const App = () => {
