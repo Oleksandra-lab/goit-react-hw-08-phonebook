@@ -1,17 +1,18 @@
 import React, { useEffect, lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  requestAddContact,
-  requestContacts,
-  requestDeleteContact,
-} from 'redux/contactsReducer';
-import { setFilter } from 'redux/filterReducer';
+// import ContactForm from './ContactForm/ContactForm';
+// import ContactList from './ContactList/ContactList';
+// import Filter from './Filter/Filter';
+import { useDispatch, } from 'react-redux';
+// import {
+//   requestAddContact,
+//   requestContacts,
+//   requestDeleteContact,
+// } from 'redux/contactsReducer';
+// import { setFilter } from 'redux/filterReducer';
 import Navigation from './Navigation/Navigation';
 import Loader from './Loader/Loader';
+import { refreshThunk } from 'redux/authReducer';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -31,7 +32,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestContacts());
+    dispatch(refreshThunk());
   }, [dispatch]);
 
   // const addContact = newContact => {
