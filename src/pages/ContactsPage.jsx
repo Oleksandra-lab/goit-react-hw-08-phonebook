@@ -1,3 +1,4 @@
+import Filter from 'components/Filter/Filter';
 import Loader from '../components/Loader/Loader';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -37,6 +38,7 @@ const ContactsPage = () => {
   };
 
   const onDeleteContact = contactId => {
+    console.log(contactId);
     dispatch(deleteContact(contactId));
   };
 
@@ -56,7 +58,7 @@ const ContactsPage = () => {
 
         <button type="submit">Add contact</button>
       </form>
-
+      <Filter/>
       {isLoading && <Loader />}
       <ul>
         {Array.isArray(contacts) &&
