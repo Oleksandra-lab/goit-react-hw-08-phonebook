@@ -13,6 +13,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
 
   const onSubmit = data => {
+    console.log(data);
     dispatch(loginThunk(data));
   reset();
 

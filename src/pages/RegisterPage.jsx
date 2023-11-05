@@ -13,6 +13,7 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
 
   const onSubmit = data => {
+    console.log(data);
     dispatch(registerThunk(data));
   reset();
 
