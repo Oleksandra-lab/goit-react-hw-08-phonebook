@@ -1,18 +1,20 @@
-import Filter from 'components/Filter/Filter';
+// import Filter from 'components/Filter/Filter';
+import ErrorMsg from 'components/ErrorMsg/ErrorMsg';
 import Loader from '../components/Loader/Loader';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectContacts,
-  // selectContactsError,
-  // selectContactsFilterTerm,
+  selectContactsError,
+  selectContactsFilterTerm,
   selectContactsIsLoading,
 } from 'redux/contacts.selectors';
 import {
   addContact,
   deleteContact,
   fetchContacts,
+  setFilterTerm,
 } from 'redux/contactsReducer';
 
 const ContactsPage = () => {
@@ -25,8 +27,8 @@ const ContactsPage = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
   const isLoading = useSelector(selectContactsIsLoading);
-  // const error = useSelector(selectContactsError);
-  // const filterTerm = useSelector(selectContactsFilterTerm);
+  const error = useSelector(selectContactsError);
+  const filterTerm = useSelector(selectContactsFilterTerm);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -41,6 +43,16 @@ const ContactsPage = () => {
     console.log(contactId);
     dispatch(deleteContact(contactId));
   };
+
+  const handleFilterTerm = ({ target: { value } }) => {
+    dispatch(setFilterTerm(value));
+  };
+
+  const filteredContacts =
+    contacts !== null &&
+    contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filterTerm.toLowerCase().trim())
+    );
 
   return (
     <div>
@@ -58,16 +70,30 @@ const ContactsPage = () => {
 
         <button type="submit">Add contact</button>
       </form>
-      <Filter/>
+      {/* <Filter/> */}
+
+      <div>
+        <h3>Find contact by name:</h3>
+        <input
+          onChange={handleFilterTerm}
+          value={filterTerm}
+          type="text"
+          placeholder="Taco..."
+        />
+      </div>
+
       {isLoading && <Loader />}
+      {error && <ErrorMsg message={error} />}
       <ul>
-        {Array.isArray(contacts) &&
-          contacts.map(contact => {
+        {filteredContacts &&
+          filteredContacts.map(contact =>  {
             return (
               <li key={contact.id}>
                 <h3>{contact.name}</h3>
                 <p>{contact.number}</p>
-                <button onClick={() => onDeleteContact(contact.id)}>Delete</button>
+                <button onClick={() => onDeleteContact(contact.id)}>
+                  Delete
+                </button>
               </li>
             );
           })}
