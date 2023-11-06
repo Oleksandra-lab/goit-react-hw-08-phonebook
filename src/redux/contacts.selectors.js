@@ -14,8 +14,5 @@ export const selectContactsError = createSelector(
   selectPhonebook,
   phonebook => phonebook.error
 );
-// export const selectContactsFilterTerm = createSelector(
-//   selectPhonebook,
-//   phonebook => phonebook.filterTerm
-// );
+
 export const selectContactsFilterTerm = state => state.filter.filter

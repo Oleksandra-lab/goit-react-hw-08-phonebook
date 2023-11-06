@@ -10,8 +10,8 @@ const Navigation = () => {
   const dispatch = useDispatch();
 
   const onLogOut = () => {
-dispatch(logOutThunk());
-  }
+    dispatch(logOutThunk());
+  };
 
   return (
     <header>
@@ -24,8 +24,7 @@ dispatch(logOutThunk());
             <StyledNavLink className="header-link" to="/contacts">
               Contacts
             </StyledNavLink>{' '}
-            <UserMenu onLogOut={onLogOut}/>
-            {/* <button onClick={onLogOut}>Log Out</button> */}
+            <UserMenu onLogOut={onLogOut} />
           </>
         ) : (
           <>
@@ -35,7 +34,6 @@ dispatch(logOutThunk());
             <StyledNavLink className="header-link" to="/register">
               Register
             </StyledNavLink>
-            
           </>
         )}
       </nav>

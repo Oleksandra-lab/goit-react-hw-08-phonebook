@@ -1,4 +1,3 @@
-// import Filter from 'components/Filter/Filter';
 import ErrorMsg from 'components/ErrorMsg/ErrorMsg';
 import Loader from '../components/Loader/Loader';
 import React, { useEffect } from 'react';
@@ -71,8 +70,7 @@ const ContactsPage = () => {
 
         <button type="submit">Add contact</button>
       </StyledForm>
-      {/* <Filter/> */}
-
+      
       <div>
         <h3>Find contact by name:</h3>
         <input
