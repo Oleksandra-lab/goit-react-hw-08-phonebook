@@ -3,6 +3,7 @@ import { StyledNavLink } from '../App.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuthAuthenticated } from 'redux/auth.selectors';
 import { logOutThunk } from 'redux/authReducer';
+import UserMenu from 'components/UserMenu/UserMenu';
 
 const Navigation = () => {
   const authenticated = useSelector(selectAuthAuthenticated);
@@ -23,7 +24,8 @@ dispatch(logOutThunk());
             <StyledNavLink className="header-link" to="/contacts">
               Contacts
             </StyledNavLink>{' '}
-            <button onClick={onLogOut}>Log Out</button>
+            <UserMenu onLogOut={onLogOut}/>
+            {/* <button onClick={onLogOut}>Log Out</button> */}
           </>
         ) : (
           <>

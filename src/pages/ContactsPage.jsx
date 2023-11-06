@@ -16,6 +16,7 @@ import {
   fetchContacts,
 } from 'redux/contactsReducer';
 import { setFilter } from 'redux/filterReducer';
+import { StyledForm, StyledInput } from './Pages.styled';
 
 const ContactsPage = () => {
   const {
@@ -56,20 +57,20 @@ const ContactsPage = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <label>
           <span>Name:</span>
-          <input {...register('name', { required: true })} type="text" />
+          <StyledInput {...register('name', { required: true })} type="text" />
           {errors.name && <span>This field is required</span>}
         </label>
         <label>
           <span>Number:</span>
-          <input {...register('number', { required: true })} type="text" />
+          <StyledInput {...register('number', { required: true })} type="text" />
           {errors.number && <span>This field is required</span>}
         </label>
 
         <button type="submit">Add contact</button>
-      </form>
+      </StyledForm>
       {/* <Filter/> */}
 
       <div>

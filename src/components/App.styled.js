@@ -47,20 +47,21 @@ export const StyledAppContainer = styled.div`
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  color: black;
-  border: 1px solid black;
-  border-radius: 10px;
+  color: skyblue;
+  border: 1px solid grey;
+  border-radius: 5px;
   display: inline-block;
-  padding: 20px;
+  padding: 5px;
   font-size: 22px;
   text-decoration: none;
   margin-right: 15px;
+  margin-bottom: 20px;
 
   transition: all 0.3s;
 
   &.active {
-    border: 1px solid white;
-    background-color: black;
+    border: 1px solid gray;
+    background-color: skyblue;
     color: white;
   }
 `;
