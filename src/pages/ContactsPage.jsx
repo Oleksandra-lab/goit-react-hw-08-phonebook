@@ -14,8 +14,8 @@ import {
   addContact,
   deleteContact,
   fetchContacts,
-  setFilterTerm,
 } from 'redux/contactsReducer';
+import { setFilter } from 'redux/filterReducer';
 
 const ContactsPage = () => {
   const {
@@ -45,7 +45,7 @@ const ContactsPage = () => {
   };
 
   const handleFilterTerm = ({ target: { value } }) => {
-    dispatch(setFilterTerm(value));
+    dispatch(setFilter(value));
   };
 
   const filteredContacts =
@@ -78,7 +78,7 @@ const ContactsPage = () => {
           onChange={handleFilterTerm}
           value={filterTerm}
           type="text"
-          placeholder="Taco..."
+          placeholder="Enter name"
         />
       </div>
 
@@ -86,7 +86,7 @@ const ContactsPage = () => {
       {error && <ErrorMsg message={error} />}
       <ul>
         {filteredContacts &&
-          filteredContacts.map(contact =>  {
+          filteredContacts.map(contact => {
             return (
               <li key={contact.id}>
                 <h3>{contact.name}</h3>
