@@ -16,6 +16,7 @@ import {
 } from 'redux/contactsReducer';
 import { setFilter } from 'redux/filterReducer';
 import { StyledForm, StyledInput } from './Pages.styled';
+import ContactList from '../components/ContactList/ContactList'
 
 const ContactsPage = () => {
   const {
@@ -39,20 +40,13 @@ const ContactsPage = () => {
     reset();
   };
 
-  const onDeleteContact = contactId => {
-    console.log(contactId);
-    dispatch(deleteContact(contactId));
-  };
+ 
 
   const handleFilterTerm = ({ target: { value } }) => {
     dispatch(setFilter(value));
   };
 
-  const filteredContacts =
-    contacts !== null &&
-    contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterTerm.toLowerCase().trim())
-    );
+ 
 
   return (
     <div>
@@ -83,20 +77,21 @@ const ContactsPage = () => {
 
       {isLoading && <Loader />}
       {error && <ErrorMsg message={error} />}
-      <ul>
+      {/* <ul>
         {filteredContacts &&
           filteredContacts.map(contact => {
             return (
               <li key={contact.id}>
                 <h3>{contact.name}</h3>
                 <p>{contact.number}</p>
-                <button onClick={() => onDeleteContact(contact.id)}>
+                <button onClick={() => onDeleteContact(contact._id)}>
                   Delete
                 </button>
               </li>
             );
           })}
-      </ul>
+      </ul> */}
+      <ContactList/>
     </div>
   );
 };

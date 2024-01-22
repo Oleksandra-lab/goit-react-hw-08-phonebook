@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const phonebookInstance = axios.create({
-  baseURL: 'https://connections-api.herokuapp.com/',
+  baseURL: 'http://localhost:8000',
 });
 
 export const setToken = token => {

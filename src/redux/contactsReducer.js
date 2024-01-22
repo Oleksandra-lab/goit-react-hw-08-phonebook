@@ -6,7 +6,7 @@ import {
 } from 'services/contactsAPI';
 
 const contactsInitialState = {
-  contacts: null,
+  contacts: [],
   isLoading: false,
   error: null,
 };
@@ -40,9 +40,9 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      const deletedContact = await requestDeleteContact(contactId);
-      console.log(deletedContact);
-      return deletedContact;
+       await requestDeleteContact(contactId);
+      
+      return contactId;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -72,7 +72,7 @@ const contactsSlice = createSlice({
       })
 
       .addCase(deleteContact.fulfilled, (state, action) => {        
-        state.contacts = state.contacts.filter(contact => contact.id !== action.payload.id);
+        state.contacts = state.contacts.filter(contact => contact._id !== action.payload);
         state.isLoading = false;
       })
 

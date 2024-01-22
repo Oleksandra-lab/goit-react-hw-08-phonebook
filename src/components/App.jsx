@@ -8,6 +8,7 @@ import RestrictedRoute from './RestrictedRoute/RestrictedRoute';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 
 const HomePage = lazy(() => import('pages/HomePage'));
+const Profile = lazy(() => import('pages/Profile'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
@@ -35,6 +36,15 @@ const appRoutes = [
     element: (
       <PrivateRoute>
         <ContactsPage />
+      </PrivateRoute>
+    ),
+  },
+
+  {
+    path: '/profile',
+    element: (
+      <PrivateRoute>
+        <Profile />
       </PrivateRoute>
     ),
   },
